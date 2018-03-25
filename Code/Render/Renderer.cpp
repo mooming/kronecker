@@ -1,6 +1,6 @@
 #include "Renderer.h"
 
-namespace HE
+namespace HardBop
 {
 	Renderer::Renderer()
 	{

@@ -8,7 +8,7 @@
 #include <cstdio>
 #include <utility>
 
-namespace HE
+namespace HardBop
 {
     class Exception
     {

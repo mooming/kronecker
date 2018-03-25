@@ -5,12 +5,14 @@
 
 #include "Types.h"
 
-namespace HE
+namespace HardBop
 {
 	class Time
 	{
 	public:
 		using MilliSec = uint64_t;
+
+   public:
 		class Measure
 		{
 		private:
@@ -47,6 +49,7 @@ namespace HE
 			}
 		};
 
+   public:
 		static MilliSec GetTimeSec();
 		static MilliSec GetTimeMilli();
 		static void Sleep(MilliSec milli);

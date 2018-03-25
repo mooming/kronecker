@@ -1,11 +1,10 @@
 // Copyright Hansol Park (anav96@naver.com, mooming.go@gmail.com). All rights reserved.
 
-#ifndef StackAllocator_h
-#define StackAllocator_h
+#pragma once
 
 #include "Allocator.h"
 
-namespace HE
+namespace HardBop
 {
 	class StackAllocator : public Allocator
 	{
@@ -17,7 +16,7 @@ namespace HE
         SizeType capacity;
         SizeType freeSize;
         SizeType cursor;
-        
+
         union
         {
             Byte* buffer;
@@ -44,18 +43,20 @@ namespace HE
 
 #include "TestCase.h"
 
-namespace HE
+namespace HardBop
 {
-    class StackAllocatorTest : public TestCase
-    {
-    public:
-        StackAllocatorTest() : TestCase("StackAllocatorTest") {}
+   namespace Test
+   {
+      class StackAllocatorTest : public TestCase
+      {
+      public:
+         StackAllocatorTest() : TestCase("StackAllocatorTest") {}
 
-    protected:
-        virtual bool DoTest() override;
-    };
-}
+      protected:
+         virtual bool DoTest() override;
+      };
+   } // Test
+
+} // HardBop
+
 #endif //__UNIT_TEST__
-
-
-#endif /* StackAllocator_h */

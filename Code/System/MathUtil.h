@@ -11,7 +11,7 @@
 #include "Constants.h"
 #include "Debug.h"
 
-namespace HE
+namespace HardBop
 {
   template <typename T>
   inline T Abs(T value, std::false_type)
@@ -191,21 +191,26 @@ namespace HE
 
 #include "TestCase.h"
 
-namespace HE
+namespace HardBop
 {
+   namespace Test
+   {
 
-  class MathUtilTest : public TestCase
-  {
-  public:
+      class MathUtilTest : public TestCase
+      {
+      public:
 
-	  MathUtilTest() : TestCase("MathUtilTest")
-    {
-    }
+         MathUtilTest() : TestCase("MathUtilTest")
+         {
+         }
 
-  protected:
-    virtual bool DoTest() override;
-  };
-}
+      protected:
+         virtual bool DoTest() override;
+      };
+
+   } // Test
+
+} // HardBop
 
 #endif //__UNIT_TEST__
 

@@ -1,6 +1,5 @@
 // Copyright Hansol Park (anav96@naver.com, mooming.go@gmail.com). All rights reserved.
 
-#include "System/ComponentSystem.h"
 #include "System/HardbopAllocator.h"
 #include "System/LinkedList.h"
 #include "System/MathUtil.h"
@@ -24,7 +23,8 @@
 
 #include <iostream>
 
-using namespace HE;
+using namespace HardBop;
+using namespace Test;
 
 int main(int argc, const char* argv[])
 {

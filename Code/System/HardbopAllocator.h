@@ -2,7 +2,7 @@
 
 #include "Allocator.h"
 
-namespace HE
+namespace HardBop
 {
 	template <typename T>
 	class HardbopAllocator final
@@ -49,19 +49,23 @@ namespace HE
 
 #include "System/TestCase.h"
 
-namespace HE
+namespace HardBop
 {
 
-	class HardbopAllocatorTest : public TestCase
-	{
-	public:
+   namespace Test
+   {
+      class HardbopAllocatorTest : public TestCase
+      {
+      public:
 
-		HardbopAllocatorTest() : TestCase("HardbopAllocatorTest")
-		{
-		}
+         HardbopAllocatorTest() : TestCase("HardbopAllocatorTest")
+         {
+         }
 
-	protected:
-		virtual bool DoTest() override;
-	};
+      protected:
+         virtual bool DoTest() override;
+      };
+   } // Test
+
 }
 #endif //__UNIT_TEST__

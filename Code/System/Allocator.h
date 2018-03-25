@@ -8,7 +8,7 @@
 
 #include <memory>
 
-namespace HE
+namespace HardBop
 {
     class Allocator
     {
@@ -103,7 +103,7 @@ namespace HE
     }
 
     template <typename Type>
-    inline void Delete(Type* ptr)
+    inline void DeleteComponents(Type* ptr)
     {
         ptr->~Type();
         Deallocate(ptr);
@@ -114,18 +114,25 @@ namespace HE
     {
         // TODO TODO
 	}
+} // HardBop
 
 #ifdef __UNIT_TEST__
-    class AllocatorTest : public TestCase
-    {
-    public:
-        AllocatorTest() : TestCase("AllocatorTest") {}
+namespace HardBop
+{
+   namespace Test
+   {
+      class AllocatorTest : public TestCase
+      {
+      public:
+         AllocatorTest() : TestCase("AllocatorTest") {}
 
-    protected:
-        virtual bool DoTest() override;
-    };
+      protected:
+         virtual bool DoTest() override;
+      };
+   } // Test
+
+} // HardBop
+
 #endif //__UNIT_TEST__
-
-}
 
 #endif /* Allocator_h */

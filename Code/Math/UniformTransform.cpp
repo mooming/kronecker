@@ -1,6 +1,6 @@
 #include "UniformTransform.h"
 
-using namespace HE;
+using namespace HardBop::Math;
 
 #ifdef __UNIT_TEST__
 
@@ -9,6 +9,8 @@ using namespace HE;
 #include "System/Time.h"
 #include "System/Vector.h"
 #include <iostream>
+
+using namespace HardBop::Test;
 
 bool UniformTransformTest::DoTest()
 {

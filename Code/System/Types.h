@@ -6,7 +6,7 @@
 #include <cstddef>
 #include <cstdint>
 
-namespace HE
+namespace HardBop
 {
 	using Byte = uint8_t;
 	using Pointer = void*;

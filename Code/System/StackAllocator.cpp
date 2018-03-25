@@ -6,7 +6,7 @@
 #include "System/Exception.h"
 #include "System/StdUtil.h"
 
-using namespace HE;
+using namespace HardBop;
 
 StackAllocator::StackAllocator(size_t _capacity, AllocatorId allocatorId)
 	: Allocator()
@@ -18,12 +18,12 @@ StackAllocator::StackAllocator(size_t _capacity, AllocatorId allocatorId)
     FatalAssertMessage(_capacity > (sizeof(bool) + sizeof(SizeType))
         , "StackAllocator: Capacity is too small. Should be larger than %lu\n"
         , sizeof(bool) + sizeof(SizeType));
-	bufferPtr = HE::Allocate(allocatorId, _capacity);
+	bufferPtr = HardBop::Allocate(allocatorId, _capacity);
 }
 
 StackAllocator::~StackAllocator()
 {
-	HE::Deallocate(bufferPtr);
+	HardBop::Deallocate(bufferPtr);
 }
 
 void *StackAllocator::Allocate (size_t size)

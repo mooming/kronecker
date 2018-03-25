@@ -1,170 +1,181 @@
 // Copyright Hansol Park (anav96@naver.com, mooming.go@gmail.com). All rights reserved.
 
-#ifndef UniformTransform_h
-#define UniformTransform_h
+#pragma once
 
 #include "Vector3.h"
 #include "Quaternion.h"
 #include "Matrix3x3.h"
 #include "Matrix4x4.h"
 
-namespace HE
+namespace HardBop
 {
-	template <typename Number>
-	class UniformTransform
-	{
-		using This = UniformTransform;
-		using Vec3 = Vector3<Number>;
-		using Quat = Quaternion<Number>;
-		using Mat3x3 = Matrix3x3<Number>;
-		using Mat4x4 = Matrix4x4<Number>;
 
-	public:
-		Quat rotation;
-		Number scale;
-		Vec3 translation;
+namespace Math
+{
 
-	public:
-		UniformTransform() : rotation(), translation(), scale(1)
-		{
-		}
+template <typename Number>
+class UniformTransform
+{
+  using This = UniformTransform;
+  using Vec3 = Vector3<Number>;
+  using Quat = Quaternion<Number>;
+  using Mat3x3 = Matrix3x3<Number>;
+  using Mat4x4 = Matrix4x4<Number>;
 
-		UniformTransform(std::nullptr_t)
-			: rotation(nullptr), translation(nullptr)
-		{
-		}
+public:
+  Quat rotation;
+  Number scale;
+  Vec3 translation;
 
-		UniformTransform(const Vec3& translation, const Quat& rotation, Number scale)
-			: rotation(rotation), translation(translation), scale(scale)
-		{
-		}
+public:
+  UniformTransform() : rotation(), translation(), scale(1)
+  {
+  }
 
-		UniformTransform(const Mat4x4& mat)
-		{
-			Assert(mat.IsOrthogonal());
+  UniformTransform(std::nullptr_t)
+    : rotation(nullptr), translation(nullptr)
+  {
+  }
 
-			Vec3 c1 = Vec3(mat.m11, mat.m21, mat.m31);
-			Vec3 c2 = Vec3(mat.m12, mat.m22, mat.m32);
-			Vec3 c3 = Vec3(mat.m13, mat.m23, mat.m33);
+  UniformTransform(const Vec3& translation, const Quat& rotation, Number scale)
+    : rotation(rotation), translation(translation), scale(scale)
+  {
+  }
 
-			constexpr float oneThird = 1.0f / 3.0f;
-			scale = (c1.Normalize() + c2.Normalize() + c3.Normalize()) * oneThird;
+  UniformTransform(const Mat4x4& mat)
+  {
+    Assert(mat.IsOrthogonal());
 
-			Assert(IsEqual(scale, c2.Normalize()));
-			Assert(IsEqual(scale, c3.Normalize()));
+    Vec3 c1 = Vec3(mat.m11, mat.m21, mat.m31);
+    Vec3 c2 = Vec3(mat.m12, mat.m22, mat.m32);
+    Vec3 c3 = Vec3(mat.m13, mat.m23, mat.m33);
 
-			Mat3x3 rotMat = nullptr;
+    constexpr float oneThird = 1.0f / 3.0f;
+    scale = (c1.Normalize() + c2.Normalize() + c3.Normalize()) * oneThird;
 
-			rotMat.m11 = c1.x;
-			rotMat.m21 = c1.y;
-			rotMat.m31 = c1.z;
+    Assert(IsEqual(scale, c2.Normalize()));
+    Assert(IsEqual(scale, c3.Normalize()));
 
-			rotMat.m12 = c2.x;
-			rotMat.m22 = c2.y;
-			rotMat.m32 = c2.z;
+    Mat3x3 rotMat = nullptr;
 
-			rotMat.m13 = c3.x;
-			rotMat.m23 = c3.y;
-			rotMat.m33 = c3.z;
+    rotMat.m11 = c1.x;
+    rotMat.m21 = c1.y;
+    rotMat.m31 = c1.z;
 
-			rotation = static_cast<Quat> (rotMat);
-		}
+    rotMat.m12 = c2.x;
+    rotMat.m22 = c2.y;
+    rotMat.m32 = c2.z;
 
-		inline bool operator==(const This& rhs)
-		{
-			return rotation == rhs.rotation && scale == rhs.scale && translation == rhs.translation;
-		}
+    rotMat.m13 = c3.x;
+    rotMat.m23 = c3.y;
+    rotMat.m33 = c3.z;
 
-		inline bool operator!=(const This& rhs)
-		{
-			return !(*this == rhs);
-		}
+    rotation = static_cast<Quat> (rotMat);
+  }
 
-		template <typename T>
-		inline T operator*(const T& rhs) const
-		{
-			return Transform(rhs);
-		}
+  inline bool operator==(const This& rhs)
+  {
+    return rotation == rhs.rotation && scale == rhs.scale && translation == rhs.translation;
+  }
 
-		Vec3 Transform(const Vec3& x) const
-		{
-			return rotation * (scale * x) + translation;
-		}
+  inline bool operator!=(const This& rhs)
+  {
+    return !(*this == rhs);
+  }
 
-		Vec3 InverseTransform(const Vec3& x) const
-		{
-			return (rotation.Inverse() * (x - translation) / scale);
-		}
+  template <typename T>
+  inline T operator*(const T& rhs) const
+  {
+    return Transform(rhs);
+  }
 
-		This Transform(const This& rhs) const
-		{
-			This result(nullptr);
+  Vec3 Transform(const Vec3& x) const
+  {
+    return rotation * (scale * x) + translation;
+  }
 
-			result.scale = scale * rhs.scale;
-			result.rotation = rotation * rhs.rotation;
-			result.translation = rotation * (scale * rhs.translation) + translation;
+  Vec3 InverseTransform(const Vec3& x) const
+  {
+    return (rotation.Inverse() * (x - translation) / scale);
+  }
 
-			return result;
-		}
+  This Transform(const This& rhs) const
+  {
+    This result(nullptr);
 
-		This Inverse() const
-		{
-			This inverse(nullptr);
+    result.scale = scale * rhs.scale;
+    result.rotation = rotation * rhs.rotation;
+    result.translation = rotation * (scale * rhs.translation) + translation;
 
-			scale = 1.0f / scale;
-			rotation.Invert();
-			translation = rotation * translation * (-scale);
+    return result;
+  }
 
-			return inverse;
-		}
+  This Inverse() const
+  {
+    This inverse(nullptr);
 
-		Mat4x4 ToMatrix() const
-		{
-			Mat4x4 mat = rotation.ToMat4x4() * Mat4x4::CreateDiagonal(Float4(scale, scale, scale, 1.0f));
-			mat.SetTranslation(translation);
+    scale = 1.0f / scale;
+    rotation.Invert();
+    translation = rotation * translation * (-scale);
 
-			return mat;
-		}
-	};
+    return inverse;
+  }
 
-	using UniformTRS = UniformTransform<float>;
+  Mat4x4 ToMatrix() const
+  {
+    Mat4x4 mat = rotation.ToMat4x4() * Mat4x4::CreateDiagonal(Float4(scale, scale, scale, 1.0f));
+    mat.SetTranslation(translation);
 
-	template <typename T>
-	inline std::ostream& operator<<(std::ostream& os, const UniformTransform<T>& local)
-	{
-		using namespace std;
+    return mat;
+  }
+};
 
-		os << "Uniform Transform" << endl;
-		os << "Position: (" << local.translation.x << ", "
-			<< local.translation.y << ", "
-			<< local.translation.z << ")" << endl;
-		auto r = local.rotation.EulerAngles();
-		os << "Rotation: (" << r.x << ", " << r.y << ", " << r.z << ")" << endl;
-		os << "Scale: (" << local.scale << ")" << endl;
+using UniformTRS = UniformTransform<float>;
 
-		return os;
-	}
+template <typename T>
+inline std::ostream& operator<<(std::ostream& os, const UniformTransform<T>& local)
+{
+  using namespace std;
+
+  os << "Uniform Transform" << endl;
+  os << "Position: (" << local.translation.x << ", "
+    << local.translation.y << ", "
+    << local.translation.z << ")" << endl;
+  auto r = local.rotation.EulerAngles();
+  os << "Rotation: (" << r.x << ", " << r.y << ", " << r.z << ")" << endl;
+  os << "Scale: (" << local.scale << ")" << endl;
+
+  return os;
 }
+
+} // Math
+
+} // HardBop
 
 #ifdef __UNIT_TEST__
 
 #include "System/TestCase.h"
 
-namespace HE
+namespace HardBop
 {
 
-  class UniformTransformTest : public TestCase
+namespace Math
+{
+
+class UniformTransformTest : public TestCase
+{
+public:
+
+  UniformTransformTest() : TestCase("UniformTransformTest")
   {
-  public:
+  }
 
-    UniformTransformTest() : TestCase("UniformTransformTest")
-    {
-    }
+protected:
+  virtual bool DoTest() override;
+};
 
-  protected:
-    virtual bool DoTest() override;
-  };
-}
+} // Math
+
+} // HardBop
+
 #endif //__UNIT_TEST__
-
-#endif //UniformTransform_h

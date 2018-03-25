@@ -5,7 +5,7 @@
 #include <iostream>
 #include <exception>
 
-using namespace HE;
+using namespace HardBop::Test;
 
 TestCase::TestCase(const char * title) : title(title), isDone(false), isSuccess(false)
 {

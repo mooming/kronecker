@@ -11,7 +11,7 @@
 
 #include <vector>
 
-namespace HE
+namespace HardBop
 {
 
   class MeshData

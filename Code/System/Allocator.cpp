@@ -5,7 +5,7 @@
 #include "MemoryManager.h"
 #include "Types.h"
 
-using namespace HE;
+using namespace HardBop;
 
 namespace
 {
@@ -36,7 +36,7 @@ namespace
 	};
 }
 
-Allocator& HE::GetAllocator()
+Allocator& HardBop::GetAllocator()
 {
     auto allocator = mmgr.GetAllocator(mmgr.GetCurrent());
     Assert(allocator != nullptr);
@@ -44,7 +44,7 @@ Allocator& HE::GetAllocator()
     return *allocator;
 }
 
-Allocator& HE::GetAllocator(AllocatorId allocatorId)
+Allocator& HardBop::GetAllocator(AllocatorId allocatorId)
 {
     auto allocator = mmgr.GetAllocator(allocatorId);
     Assert(allocator != nullptr);
@@ -52,12 +52,12 @@ Allocator& HE::GetAllocator(AllocatorId allocatorId)
     return *allocator;
 }
 
-Pointer HE::Allocate(size_t size)
+Pointer HardBop::Allocate(size_t size)
 {
 	return Allocate(mmgr.GetCurrent(), size);
 }
 
-Pointer HE::Allocate(AllocatorId allocatorId, size_t size)
+Pointer HardBop::Allocate(AllocatorId allocatorId, size_t size)
 {
 	auto allocator = mmgr.GetAllocator(allocatorId);
 	Assert(allocator != nullptr);
@@ -72,7 +72,7 @@ Pointer HE::Allocate(AllocatorId allocatorId, size_t size)
 	return allocBlock->GetBody();
 }
 
-void HE::Deallocate(const Pointer ptr)
+void HardBop::Deallocate(const Pointer ptr)
 {
 	AssertMessage(ptr != nullptr, "Null pointer error. try to deallocate the null-pointer.");
 
@@ -82,7 +82,7 @@ void HE::Deallocate(const Pointer ptr)
 	allocator.Deallocate(reinterpret_cast<Pointer>(allocBlock));
 }
 
-size_t HE::GetSize(const Pointer ptr)
+size_t HardBop::GetSize(const Pointer ptr)
 {
     AssertMessage(ptr != nullptr, "Null pointer error. Attempt to deallocate null-pointer.");
 
@@ -120,6 +120,8 @@ AllocatorScope::~AllocatorScope()
 #ifdef __UNIT_TEST__
 
 #include <iostream>
+
+using namespace HardBop::Test;
 
 bool AllocatorTest::DoTest()
 {

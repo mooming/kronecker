@@ -75,7 +75,7 @@ inline This operator/(const This& rhs) const
 
   for (int i = 0; i < order; ++i)
   {
-    Assert(!HE::IsZero(static_cast<float>(rhs.a[i])));
+    Assert(!HardBop::IsZero(static_cast<float>(rhs.a[i])));
     result.a[i] = a[i] / rhs.a[i];
   }
 
@@ -157,7 +157,7 @@ inline void Divide(const This& rhs)
 {
   for (int i = 0; i < order; ++i)
   {
-    Assert(!HE::IsZero(static_cast<float>(rhs.a[i])));
+    Assert(!HardBop::IsZero(static_cast<float>(rhs.a[i])));
     a[i] /= rhs.a[i];
   }
 }
@@ -202,7 +202,7 @@ inline float Length() const
 float Normalize()
 {
   auto length = Length();
-  if (HE::IsZero(length))
+  if (HardBop::IsZero(length))
   {
     *this = This::Forward;
     return length;

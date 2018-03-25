@@ -1,7 +1,6 @@
 // Copyright Hansol Park (anav96@naver.com, mooming.go@gmail.com). All rights reserved.
 
-#ifndef Optional_h
-#define Optional_h
+#pragma once
 
 #include "Debug.h"
 #include "StdUtil.h"
@@ -9,7 +8,7 @@
 
 #include <utility>
 
-namespace HE
+namespace HardBop
 {
     template <typename Type>
     class Optional
@@ -158,17 +157,19 @@ namespace HE
 
 #ifdef __UNIT_TEST__
 #include "TestCase.h"
-namespace HE
+namespace HardBop
 {
-    class OptionalTest : public TestCase
-    {
-    public:
-        OptionalTest() : TestCase("OptionalTest") {}
+   namespace Test
+   {
+      class OptionalTest : public TestCase
+      {
+      public:
+         OptionalTest() : TestCase("OptionalTest") {}
 
-    protected:
-        virtual bool DoTest() override;
-    };
-}
+      protected:
+         virtual bool DoTest() override;
+      };
+   } // Test
+
+} // HardBop
 #endif //__UNIT_TEST__
-
-#endif /* Optional_h */

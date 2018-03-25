@@ -3,7 +3,7 @@
 #include "Renderable.h"
 #include "../System/Vector.h"
 
-namespace HE
+namespace HardBop
 {
 	class Renderable;
 

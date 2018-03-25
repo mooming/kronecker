@@ -2,7 +2,7 @@
 
 #include "AABB.h"
 
-namespace HE
+namespace HardBop
 {
   template class AABB<Float2>;
   template class AABB<Float3>;
@@ -12,7 +12,7 @@ namespace HE
 
 #include <iostream>
 
-bool HE::AABBTest::DoTest()
+bool HardBop::AABBTest::DoTest()
 {
   using std::cout;
   using std::cerr;

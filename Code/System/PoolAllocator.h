@@ -5,7 +5,7 @@
 
 #include "Allocator.h"
 
-namespace HE
+namespace HardBop
 {
 	class PoolAllocator : public Allocator
 	{

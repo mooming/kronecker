@@ -5,7 +5,9 @@
 #include <iostream>
 #include <vector>
 
-bool HE::HardbopAllocatorTest::DoTest()
+using namespace HardBop::Test;
+
+bool HardbopAllocatorTest::DoTest()
 {
 	using namespace std;
 

@@ -5,32 +5,39 @@
 
 #include <list>
 
-namespace HE
+namespace HardBop
 {
-    class TestCase;
 
-    class TestEnv
-    {
+namespace Test
+{
 
-    private:
-        std::list<TestCase*> tests;
+class TestCase;
 
-        unsigned int testedCount;
-        unsigned int invalidCount;
-        unsigned int passCount;
-        unsigned int failCount;
+class TestEnv
+{
 
-    public:
-        static TestEnv& GetEnv();
-        void Start();
+private:
+	std::list<TestCase*> tests;
 
-        void AddTest(TestCase* test);
+	unsigned int testedCount;
+	unsigned int invalidCount;
+	unsigned int passCount;
+	unsigned int failCount;
 
-    private:
-        inline TestEnv() : tests(), testedCount(0), invalidCount(0), passCount(0), failCount(0) {}
-        bool ExecuteTest(TestCase& testCase);
-        void Report();
-    };
-}
+public:
+	static TestEnv& GetEnv();
+	void Start();
+
+	void AddTest(TestCase* test);
+
+private:
+	inline TestEnv() : tests(), testedCount(0), invalidCount(0), passCount(0), failCount(0) {}
+	bool ExecuteTest(TestCase& testCase);
+	void Report();
+};
+
+} // Test
+
+} // HardBop
 
 #endif // TestEnv_h

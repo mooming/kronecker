@@ -11,7 +11,7 @@
 
 #include <string>
 
-namespace HE
+namespace HardBop
 {
     class String
     {
@@ -355,7 +355,7 @@ namespace HE
 
 #ifdef __UNIT_TEST__
 #include "TestCase.h"
-namespace HE
+namespace HardBop
 {
     class StringTest : public TestCase
     {

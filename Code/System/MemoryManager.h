@@ -7,7 +7,7 @@
 
 #include <cstdint>
 
-namespace HE
+namespace HardBop
 {
     class Allocator;
 

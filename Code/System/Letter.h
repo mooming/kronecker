@@ -3,7 +3,7 @@
 #ifndef Letter_h
 #define Letter_h
 
-namespace HE
+namespace HardBop
 {
 	class Letter
 	{

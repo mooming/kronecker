@@ -10,7 +10,7 @@
 #include <cstdio>
 #include <cstring>
 
-using namespace HE;
+using namespace HardBop;
 
 String::String(const bool value) : buffer(), hashCode(0)
 {

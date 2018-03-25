@@ -6,7 +6,7 @@
 #include <thread>
 
 using namespace std;
-using namespace HE;
+using namespace HardBop;
 
 Time::MilliSec Time::GetTimeSec()
 {

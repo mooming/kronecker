@@ -6,7 +6,7 @@
 #include "System/Exception.h"
 #include "System/StdUtil.h"
 
-using namespace HE;
+using namespace HardBop;
 
 namespace
 {

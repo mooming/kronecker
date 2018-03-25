@@ -12,7 +12,7 @@
 
 #include <cmath>
 
-namespace HE
+namespace HardBop
 {
     bool Equals(float a, float b)
     {

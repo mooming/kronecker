@@ -2,17 +2,26 @@
 
 #include "Matrix3x3.h"
 
-namespace HE
+namespace HardBop
 {
-  template class Matrix3x3<float>;
-}
+namespace Math
+{
+
+template class Matrix3x3<float>;
+
+} // Math
+} // HardBop
+
+using namespace HardBop;
+using namespace HardBop::Math;
+using namespace HardBop::Test;
 
 #ifdef __UNIT_TEST__
 
 #include "System/Vector.h"
 #include <iostream>
 
-bool HE::Matrix3x3Test::DoTest()
+bool Matrix3x3Test::DoTest()
 {
   using namespace std;
 

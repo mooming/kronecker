@@ -6,7 +6,7 @@
 #include "System/Exception.h"
 #include "System/StdUtil.h"
 
-using namespace HE;
+using namespace HardBop;
 
 PoolAllocator::PoolAllocator(Index blockSize, Index numberOfBlocks)
     : Allocator()
@@ -49,7 +49,7 @@ PoolAllocator::PoolAllocator(Index blockSize, Index numberOfBlocks)
     }
 
     const size_t totalSize = blockSize * numberOfBlocks;
-    buffer = static_cast<Byte*>(HE::Allocate(totalSize));
+    buffer = static_cast<Byte*>(HardBop::Allocate(totalSize));
 
     availables = &buffer[0];
 
@@ -83,7 +83,7 @@ PoolAllocator::PoolAllocator(Index blockSize, Index numberOfBlocks)
 
 PoolAllocator::~PoolAllocator()
 {
-    HE::Deallocate(buffer);
+    HardBop::Deallocate(buffer);
 }
 
 Pointer PoolAllocator::Allocate()

@@ -5,7 +5,7 @@
 
 #include "Allocator.h"
 
-namespace HE
+namespace HardBop
 {
     template <typename Type, typename RefCount = uint8_t>
     class Shareable

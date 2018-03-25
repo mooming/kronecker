@@ -6,10 +6,10 @@
 
 #include <iostream>
 
-bool HE::OptionalTest::DoTest()
+bool HardBop::OptionalTest::DoTest()
 {
     using namespace std;
-    using namespace HE;
+    using namespace HardBop;
 
     {
         Optional<int> a;

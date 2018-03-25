@@ -7,7 +7,9 @@
 #ifdef __UNIT_TEST__
 #include <iostream>
 
-bool HE::MathUtilTest::DoTest()
+using namespace HardBop::Test;
+
+bool MathUtilTest::DoTest()
 {
     using namespace std;
 

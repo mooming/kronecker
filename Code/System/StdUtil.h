@@ -7,7 +7,7 @@
 
 #include <cstddef>
 
-namespace HE
+namespace HardBop
 {
     class True_t {};
     class False_t {};

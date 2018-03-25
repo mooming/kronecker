@@ -8,7 +8,7 @@
 
 #include <memory>
 
-namespace HE
+namespace HardBop
 {
     template <typename Type>
     class DoubleLinkedList

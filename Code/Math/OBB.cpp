@@ -2,16 +2,16 @@
 
 #include "OBB.h"
 
-namespace HE
-{
-	template class OBB<float>;
-}
+using namespace HardBop::Math;
+using namespace HardBop::Test;
+
+template class OBB<float>;
 
 #ifdef __UNIT_TEST__
 
 #include <iostream>
 
-bool HE::OBBTest::DoTest()
+bool OBBTest::DoTest()
 {
 	return true;
 }

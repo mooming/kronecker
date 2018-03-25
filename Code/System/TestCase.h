@@ -3,30 +3,37 @@
 #ifndef TestCase_h
 #define TestCase_h
 
-namespace HE
+namespace HardBop
 {
-    class TestCase
-    {
-    private:
-        const char* title;
-        bool isDone;
-        bool isSuccess;
 
-    public:
-        TestCase(const char* title);
-        virtual ~TestCase() = default;
+namespace Test
+{
 
-        const char* GetName() const { return title; }
-        void Start();
-        inline bool IsDone() const { return isDone; }
-        inline bool IsSuccess() const { return isSuccess; }
+class TestCase
+{
+private:
+	const char* title;
+	bool isDone;
+	bool isSuccess;
 
-    private:
-        virtual void Report();
+public:
+	TestCase(const char* title);
+	virtual ~TestCase() = default;
 
-    protected:
-        virtual bool DoTest() = 0;
-    };
-}
+	const char* GetName() const { return title; }
+	void Start();
+	inline bool IsDone() const { return isDone; }
+	inline bool IsSuccess() const { return isSuccess; }
+
+private:
+	virtual void Report();
+
+protected:
+	virtual bool DoTest() = 0;
+};
+
+} // Test
+
+} // HardBop
 
 #endif // TestCase_h

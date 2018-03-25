@@ -1,7 +1,3 @@
 #include "Matrix4x4.h"
 
-namespace HE
-{
-  template class Matrix4x4<float>;
-}
-
+template class HardBop::Math::Matrix4x4<float>;

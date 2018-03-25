@@ -2,7 +2,7 @@
 
 #include "../Math/Matrix4x4.h"
 
-namespace HE
+namespace HardBop
 {
 	class Material;
 	class Mesh;

@@ -3,7 +3,7 @@
 #ifndef Constants_h
 #define Constants_h
 
-namespace HE
+namespace HardBop
 {
 	constexpr size_t KB = 1024;
 	constexpr size_t MB = 1024 * 1024;

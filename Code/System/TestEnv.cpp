@@ -8,7 +8,8 @@
 
 #include <iostream>
 
-using namespace HE;
+using namespace HardBop;
+using namespace HardBop::Test;
 
 TestEnv& TestEnv::GetEnv()
 {
@@ -27,7 +28,7 @@ void TestEnv::Start()
     Report();
 }
 
-void HE::TestEnv::AddTest(TestCase* test)
+void TestEnv::AddTest(TestCase* test)
 {
     Assert(test != nullptr);
     tests.push_back(test);
@@ -35,14 +36,16 @@ void HE::TestEnv::AddTest(TestCase* test)
 
 bool TestEnv::ExecuteTest(TestCase& testCase)
 {
+
 #ifdef __DEBUG__
     testCase.Start();
 #else // _DEBUG__
+
     try
     {
         testCase.Start();
     }
-    catch (Exception)
+    catch ( ... )
     {
         std::cout << "Exception occurred!" << std::endl;
     }
